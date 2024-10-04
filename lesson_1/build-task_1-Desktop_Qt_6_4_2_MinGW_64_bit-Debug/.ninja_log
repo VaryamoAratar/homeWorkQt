@@ -1,0 +1,10 @@
+# ninja log v5
+8	46	0	D:/Code/Study/homeWorkQt/lesson_1/build-task_1-Desktop_Qt_6_4_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	dd30be42ecbb502a
+2	1146	7497739175233176	task_1_autogen/timestamp	42aff33ffc6f080d
+2	1146	7497739175233176	task_1_autogen/mocs_compilation.cpp	42aff33ffc6f080d
+2	1146	7497739175233176	D:/Code/Study/homeWorkQt/lesson_1/build-task_1-Desktop_Qt_6_4_2_MinGW_64_bit-Debug/task_1_autogen/timestamp	42aff33ffc6f080d
+2	1146	7497739175233176	D:/Code/Study/homeWorkQt/lesson_1/build-task_1-Desktop_Qt_6_4_2_MinGW_64_bit-Debug/task_1_autogen/mocs_compilation.cpp	42aff33ffc6f080d
+1146	4362	7497739208410382	CMakeFiles/task_1.dir/task_1_autogen/mocs_compilation.cpp.obj	ac7bd63cb1cab8a8
+1165	4631	7497739211140566	CMakeFiles/task_1.dir/main.cpp.obj	43c8ba840e3c91a5
+1157	4647	7497739211310577	CMakeFiles/task_1.dir/mainwindow.cpp.obj	b2498067fc3df66f
+4648	4970	7497739214514792	task_1.exe	a358276d56756fdc
