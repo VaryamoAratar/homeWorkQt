@@ -1,19 +1,26 @@
 #include <QCoreApplication>
+#include <QSqlDatabase>
+#include <iostream>
+#include <QSqlQuery>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+    QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+    bool ok = db.open();
+    if (ok){
+    QSqlQuery query;
+    query.exec("SELECT name from musician_genre");
+    while (query.next()) {
+        QString name = query.value(0).toString();
+        qDebug() << name;
+    }};
+    QNetworkRequest request (QUrl("http://netology.ru"));
+    QNetworkAccessManager net;
 
-    // Set up code that uses the Qt event loop here.
-    // Call a.quit() or a.exit() to quit the application.
-    // A not very useful example would be including
-    // #include <QTimer>
-    // near the top of the file and calling
-    // QTimer::singleShot(5000, &a, &QCoreApplication::quit);
-    // which quits the application after 5 seconds.
-
-    // If you do not need a running Qt event loop, remove the call
-    // to a.exec() or use the Non-Qt Plain C++ Application template.
-
-    return a.exec();
+   auto out = net.get(request);
+   std::cout << &out;
+    return 0;
 }
