@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "qttimer.h"
+#include <QStyle>
+#include "stopwatch.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,8 +19,29 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void UpdateTimer(double time);
+    void UpdateLaps(int laps, double time);
+private slots:
+
+
+
+    void on_pB_StartStop_clicked();
+
+    void on_pB_Clear_clicked();
+
+    void on_pB_Lap_clicked();
+
+    void on_pB_Lap_pressed();
+
+    void on_pB_Lap_released();
+
+    void on_pB_Clear_pressed();
+
+    void on_pB_Clear_released();
+
 private:
     Ui::MainWindow *ui;
-    QtTimer *timer;
+    Stopwatch *timer;
 };
 #endif // MAINWINDOW_H
