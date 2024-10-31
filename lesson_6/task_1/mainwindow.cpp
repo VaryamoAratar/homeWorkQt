@@ -73,6 +73,10 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete race1;
+    delete race2 ;
+    delete concurRace1 ;
+   `delete concurRace2 ;
 }
 
 //Метод запускает два потока
@@ -81,9 +85,10 @@ void MainWindow::StartRace(void){
 
     if(ui->rb_qtConcur->isChecked()){
 
-        ui->te_debug->append("Выполни ДЗ!");
+        // ui->te_debug->append("Выполни ДЗ!");
         //Тут должен быть код ДЗ
-
+        futConcurRace1 = QtConcurrent::run(&ExampleRace::DoWork, concurRace1, &number, true, ui->sb_initNum->value());
+        futConcurRace2 = QtConcurrent::run(&ExampleRace::DoWork, concurRace2, &number, true, ui->sb_initNum->value());
     }
     else{
         race1->operate(&number, ui->rb_mutexOn->isChecked(), ui->sb_initNum->value());

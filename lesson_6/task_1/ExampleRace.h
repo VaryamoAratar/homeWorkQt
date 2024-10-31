@@ -3,7 +3,7 @@
 
 #include <QThread>
 #include <QMutex>
-#include <functional>
+//#include <functional>
 
 //Создаем класс в котором будем реализовывать код, выполняемый в нескольких потоках
 class ExampleRace : public QObject{
