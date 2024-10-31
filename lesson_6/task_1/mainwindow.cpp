@@ -76,7 +76,7 @@ MainWindow::~MainWindow()
     delete race1;
     delete race2 ;
     delete concurRace1 ;
-   `delete concurRace2 ;
+    delete concurRace2 ;
 }
 
 //Метод запускает два потока
