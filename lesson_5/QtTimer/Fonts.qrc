@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/new/fonts">
+        <file>Izuver.otf</file>
+        <file>Open 24 Display St.ttf</file>
+    </qresource>
+</RCC>

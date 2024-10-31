@@ -17,19 +17,18 @@ public:
     void StopTimer();
     void ClearTimer();
     void NewLap();
+    double GetTimeLaps();
+    int GetNumLaps();
 
 signals:
 
     void sig_SendTime(double time);
-    void sig_SendLaps(int laps, double time);
 
 private slots:
     void UpdateTimes();
-
 private:
     QTimer *timer;
-    double seconds;
-    double timeLaps;
+    double seconds, timeLaps, timeTmp;
     int numLaps;
 
 };

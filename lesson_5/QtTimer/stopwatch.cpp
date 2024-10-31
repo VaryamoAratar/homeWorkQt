@@ -1,6 +1,6 @@
 #include "stopwatch.h"
 
-Stopwatch::Stopwatch(QObject *parent) :QObject{parent}, seconds{0}, numLaps{0}, timeLaps{0}
+Stopwatch::Stopwatch(QObject *parent) :QObject{parent}, seconds{0}, numLaps{0}, timeLaps{0}, timeTmp{0}
 {
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Stopwatch::UpdateTimes);
@@ -27,18 +27,22 @@ void Stopwatch::ClearTimer()
     seconds = 0.0;
     numLaps = 0;
     timeLaps = 0.0;
+    timeTmp = 0.0;
     emit sig_SendTime(seconds);
-    emit sig_SendLaps(numLaps, timeLaps);
 }
 
 void Stopwatch::NewLap()
 {
     numLaps++;
-
-    emit sig_SendLaps(numLaps, ((seconds - timeLaps) / 10.0));
-    timeLaps = seconds;
+    timeLaps = seconds - timeTmp;
+    timeTmp  = seconds;
 
 }
+
+double Stopwatch::GetTimeLaps(){return timeLaps;}
+
+int Stopwatch::GetNumLaps(){return numLaps;}
+
 
 void Stopwatch::UpdateTimes()
 {

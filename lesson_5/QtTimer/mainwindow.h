@@ -21,7 +21,6 @@ public:
 
 public slots:
     void UpdateTimer(double time);
-    void UpdateLaps(int laps, double time);
 private slots:
 
 
