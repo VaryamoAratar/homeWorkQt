@@ -37,6 +37,8 @@ Thumbs.db
 build
 testData.adc
 PreConcurent
+PreGrafic
+GraphicsCustomPlot
 # qtcreator generated files
 *.pro.user*
 CMakeLists.txt.user*
