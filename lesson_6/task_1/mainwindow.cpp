@@ -87,8 +87,8 @@ void MainWindow::StartRace(void){
 
         // ui->te_debug->append("Выполни ДЗ!");
         //Тут должен быть код ДЗ
-        futConcurRace1 = QtConcurrent::run(&ExampleRace::DoWork, concurRace1, &number, true, ui->sb_initNum->value());
-        futConcurRace2 = QtConcurrent::run(&ExampleRace::DoWork, concurRace2, &number, true, ui->sb_initNum->value());
+        QtConcurrent::run(&ExampleRace::DoWork, concurRace1, &number, true, ui->sb_initNum->value());
+        QtConcurrent::run(&ExampleRace::DoWork, concurRace2, &number, true, ui->sb_initNum->value());
     }
     else{
         race1->operate(&number, ui->rb_mutexOn->isChecked(), ui->sb_initNum->value());
