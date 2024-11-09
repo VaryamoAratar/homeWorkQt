@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>402</width>
-    <height>519</height>
+    <height>577</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -202,12 +202,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>224</x>
-     <y>369</y>
+     <x>235</x>
+     <y>446</y>
     </hint>
     <hint type="destinationlabel">
-     <x>211</x>
-     <y>248</y>
+     <x>222</x>
+     <y>339</y>
     </hint>
    </hints>
   </connection>

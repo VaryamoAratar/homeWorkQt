@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     graph = new QCustomPlot;
     graphOut = new Graphics(graph, NUM_GRAPH);
     connect(this, &MainWindow::data_is_ready, this, &MainWindow::dataIsRead);
+    connect(graph, &QWidget::destroyed, this, [&]{  ui->pB_showGraph->setText("График");
+                                                        ui->pB_showGraph->setHidden(true);
+    });
 
 
     ui->lb_FD->setText(QString("%1").arg(FD));
@@ -230,7 +233,10 @@ void MainWindow::on_pb_start_clicked()
         mins = FindMin(res);
         DisplayResult(mins, maxs);
 
+        graphOut->ClearGraph(graph);
         graphOut->AddDataToGrahp(res, (NUM_GRAPH - 1), ui->lb_FD->text().toInt());
+        graphOut->UpdateGraph(graph);
+
         emit data_is_ready();
 
     };
@@ -254,9 +260,12 @@ void MainWindow::dataIsRead()
 void MainWindow::on_pB_showGraph_clicked()
 {
     if (ui->pB_showGraph->text() == "График"){
+        graph->resize(400, 400);
+
         ui->pB_showGraph->setText("Скрыть график");
         graphOut->UpdateGraph(graph);
         graph->show();
+
     }
     else if (ui->pB_showGraph->text() == "Скрыть график"){
         ui->pB_showGraph->setText("График");
@@ -270,6 +279,5 @@ void MainWindow::on_pb_clearResult_clicked()
     ui->pB_showGraph->setHidden(true);
     graphOut->ClearGraph(graph);
     graph->close();
-
 }
 

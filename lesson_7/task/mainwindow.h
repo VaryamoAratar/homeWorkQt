@@ -51,7 +51,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QString pathToFile = "";
+    QString pathToFile = "D:/Code/Study/homeWorkQt/testData.adc";
     uint8_t numberSelectChannel = 0xEA;
 
     QVector<uint32_t> readData;
