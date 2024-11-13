@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     */
     dataBase->AddDataBase(POSTGRE_DRIVER, DB_NAME);
 
+
     /*
      * Устанавливаем данные для подключениея к БД.
      * Поскольку метод небольшой используем лямбда-функцию.
@@ -101,6 +102,18 @@ void MainWindow::on_pb_request_clicked()
 {
 
     ///Тут должен быть код ДЗ
+    if (ui->cb_category->currentIndex() == requestAllFilms)
+    {
+        dataBase->RequestToDB(requestAllFilms);
+    }
+    else if (ui->cb_category->currentIndex() == requestHorrors)
+    {
+        dataBase->RequestToDB(requestHorrors);
+    }
+    else if (ui->cb_category->currentIndex() == requestComedy)
+    {
+        dataBase->RequestToDB(requestComedy);
+    }
 
 }
 
@@ -109,10 +122,11 @@ void MainWindow::on_pb_request_clicked()
  * \param widget
  * \param typeRequest
  */
-void MainWindow::ScreenDataFromDB(const QTableWidget *widget, int typeRequest)
+void MainWindow::ScreenDataFromDB(const QSqlTableModel widget)
 {
 
-    ///Тут должен быть код ДЗ
+    ui->tbV_tableOut->setModel(widget);
+
 
 
 }

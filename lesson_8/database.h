@@ -3,6 +3,12 @@
 
 #include <QTableWidget>
 #include <QObject>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
+#include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
 
 
 
@@ -42,14 +48,14 @@ public:
 
     void AddDataBase(QString driver, QString nameDB = "");
     void DisconnectFromDataBase(QString nameDb = "");
-    void RequestToDB(QString request);
+    void RequestToDB(int request);
     QSqlError GetLastError(void);
     void ConnectToDataBase(QVector<QString> dataForConnect);
 
 
 signals:
 
-   void sig_SendDataFromDB(const QTableWidget *tableWg, int typeR);
+   void sig_SendDataFromDB(const QSqlTableModel tableWg);
    void sig_SendStatusConnection(bool);
 
 
@@ -57,6 +63,8 @@ signals:
 private:
 
     QSqlDatabase* dataBase;
+    QSqlQueryModel* simpleQueryModel;
+    QSqlTableModel* tableWidgetModel;
 
 
 };

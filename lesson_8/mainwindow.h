@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
-#include <QtConcurrent>
+#include <QtConcurrent/QtConcurrent>
+#include <QSqlRelationalTableModel>
 #include "database.h"
 #include "dbdata.h"
 
@@ -23,7 +24,7 @@ public:
 
 
 public slots:
-    void ScreenDataFromDB(const QTableWidget *widget, int typeRequest);
+    void ScreenDataFromDB(const QSqlTableModel widget);
     void ReceiveStatusConnectionToDB(bool status);
 
 

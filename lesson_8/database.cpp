@@ -6,12 +6,12 @@ DataBase::DataBase(QObject *parent)
 
     dataBase = new QSqlDatabase();
 
-
 }
 
 DataBase::~DataBase()
 {
     delete dataBase;
+
 }
 
 /*!
@@ -23,7 +23,6 @@ void DataBase::AddDataBase(QString driver, QString nameDB)
 {
 
     *dataBase = QSqlDatabase::addDatabase(driver, nameDB);
-
 }
 
 /*!
@@ -39,10 +38,6 @@ void DataBase::ConnectToDataBase(QVector<QString> data)
     dataBase->setUserName(data[login]);
     dataBase->setPassword(data[pass]);
     dataBase->setPort(data[port].toInt());
-
-
-    ///Тут должен быть код ДЗ
-
 
     bool status;
     status = dataBase->open( );
@@ -65,12 +60,19 @@ void DataBase::DisconnectFromDataBase(QString nameDb)
  * \param request - SQL запрос
  * \return
  */
-void DataBase::RequestToDB(QString request)
+void DataBase::RequestToDB(int request)
 {
 
-    ///Тут должен быть код ДЗ
+    tableWidgetModel = new QSqlTableModel(this, *dataBase);
 
+    tableWidgetModel->setTable("film");
+    tableWidgetModel->select();
+    tableWidgetModel->setHeaderData(1, Qt::Horizontal, tr("Название фильма"));
+    tableWidgetModel->setHeaderData(2, Qt::Horizontal, tr("Описание фильма"));
+
+    emit sig_SendDataFromDB(tableWidgetModel);
 }
+
 
 /*!
  * @brief Метод возвращает последнюю ошибку БД
