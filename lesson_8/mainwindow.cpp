@@ -104,15 +104,21 @@ void MainWindow::on_pb_request_clicked()
     ///Тут должен быть код ДЗ
     if (ui->cb_category->currentIndex() == requestAllFilms)
     {
-        dataBase->RequestToDB(requestAllFilms);
-    }
-    else if (ui->cb_category->currentIndex() == requestHorrors)
-    {
-        dataBase->RequestToDB(requestHorrors);
+        dataBase->RequestToDB("");
     }
     else if (ui->cb_category->currentIndex() == requestComedy)
     {
-        dataBase->RequestToDB(requestComedy);
+        dataBase->RequestToDB("SELECT title, description FROM film f"
+                              "JOIN film_category fc on f.film_id = fc.film_id"
+                              "JOIN category c on c.category_id = fc.category_id"
+                              "WHERE c.name = 'Comedy'");
+    }
+    else if (ui->cb_category->currentIndex() == requestHorrors)
+    {
+        dataBase->RequestToDB("SELECT title, description FROM film f"
+                              "JOIN film_category fc on f.film_id = fc.film_id"
+                              "JOIN category c on c.category_id = fc.category_id"
+                              "WHERE c.name = 'Horror'");
     }
 
 }
@@ -122,11 +128,22 @@ void MainWindow::on_pb_request_clicked()
  * \param widget
  * \param typeRequest
  */
-void MainWindow::ScreenDataFromDB(const QSqlTableModel widget)
+void MainWindow::ScreenDataFromDB(const QAbstractTableModel *model, int typeTb)
 {
-
-    ui->tbV_tableOut->setModel(widget);
-
+    ui->tbV_tableOut->setModel(0);
+    if (typeTb == requestAllFilms)
+    {
+        ui->tbV_tableOut->setModel(const_cast<QAbstractTableModel*>(model));
+        ui->tbV_tableOut->hideColumn(0);
+        for (int i = 3; i < model->columnCount(); i++)
+        {
+            ui->tbV_tableOut->hideColumn(i);
+        }
+    }
+    else
+    {
+        ui->tbV_tableOut->setModel(const_cast<QAbstractTableModel*>(model));
+    }
 
 
 }
@@ -154,4 +171,10 @@ void MainWindow::ReceiveStatusConnectionToDB(bool status)
 }
 
 
+
+
+void MainWindow::on_pb_clear_clicked()
+{
+    ui->tbV_tableOut->setModel(0);
+}
 

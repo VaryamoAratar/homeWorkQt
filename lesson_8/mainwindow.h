@@ -4,10 +4,8 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QtConcurrent/QtConcurrent>
-#include <QSqlRelationalTableModel>
 #include "database.h"
 #include "dbdata.h"
-
 
 
 QT_BEGIN_NAMESPACE
@@ -24,7 +22,7 @@ public:
 
 
 public slots:
-    void ScreenDataFromDB(const QSqlTableModel widget);
+    void ScreenDataFromDB(const QAbstractTableModel *model, int typeTb);
     void ReceiveStatusConnectionToDB(bool status);
 
 
@@ -33,6 +31,8 @@ private slots:
     void on_act_connect_triggered();
     void on_pb_request_clicked();
 
+
+    void on_pb_clear_clicked();
 
 signals:
     void sig_RequestToDb(QString request);

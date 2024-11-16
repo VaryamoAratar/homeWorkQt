@@ -6,6 +6,7 @@ DataBase::DataBase(QObject *parent)
 
     dataBase = new QSqlDatabase();
 
+
 }
 
 DataBase::~DataBase()
@@ -64,23 +65,22 @@ void DataBase::RequestToDB(QString request)
 {
     if (request.isEmpty())
     {
-    tableWidgetModel = new QSqlTableModel(this, *dataBase);
+        tableWidgetModel = new QSqlTableModel(this, *dataBase);
 
-    tableWidgetModel->setTable("film");
-    tableWidgetModel->select();
-    tableWidgetModel->setHeaderData(1, Qt::Horizontal, tr("Название фильма"));
-    tableWidgetModel->setHeaderData(2, Qt::Horizontal, tr("Описание фильма"));
+        tableWidgetModel->setTable("album");
+        tableWidgetModel->select();
+        tableWidgetModel->setHeaderData(1, Qt::Horizontal, tr("Название фильма"));
+        tableWidgetModel->setHeaderData(2, Qt::Horizontal, tr("Описание фильма"));
 
-    emit sig_SendDataFromDB(tableWidgetModel, requestAllFilms);
+        emit sig_SendDataFromDB(tableWidgetModel, requestAllFilms);
     }
     else
     {
+
         simpleQueryModel = new QSqlQueryModel(this);
         simpleQueryModel->setQuery(request, *dataBase);
-        simpleQueryModel->setHeaderData(0, Qt::Horizontal, tr("Название фильма"));
-        simpleQueryModel->setHeaderData(1, Qt::Horizontal, tr("Описание фильма"));
 
-    emit sig_SendDataFromDB(simpleQueryModel, 0);
+        emit sig_SendDataFromDB(simpleQueryModel, 0);
     }
 }
 

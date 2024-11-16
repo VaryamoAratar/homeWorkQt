@@ -9,6 +9,7 @@
 #include <QSqlQueryModel>
 #include <QSqlTableModel>
 #include <QSqlRelationalTableModel>
+#include <QtConcurrent>
 
 
 
@@ -55,8 +56,8 @@ public:
 
 signals:
 
-   void sig_SendDataFromDB(const QAbstractTableModel *tableWg, int typeTb);
-   void sig_SendStatusConnection(bool);
+    void sig_SendDataFromDB(const QAbstractTableModel *tableWg, int typeTb);
+    void sig_SendStatusConnection(bool);
 
 
 
