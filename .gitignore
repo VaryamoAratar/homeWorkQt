@@ -41,6 +41,9 @@ PreGrafic
 GraphicsCustomPlot
 homeWork
 
+!libcrypto-3-x64.
+
+
 # qtcreator generated files
 *.pro.user*
 CMakeLists.txt.user*
@@ -75,7 +78,7 @@ CMakeLists.txt.user*
 
 # Binaries
 # --------
-*.dll 
+
 !qcustomplot2.dll
 *.exe
 
