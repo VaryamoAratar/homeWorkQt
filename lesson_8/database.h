@@ -30,10 +30,10 @@ enum fieldsForConnect{
 //Типы запросов
 enum requestType{
 
-    requestAllFilms = 1,
-    requestComedy   = 2,
-    requestHorrors  = 3
-
+    requestAllFilms = 0,
+    requestComedy   = 1,
+    requestHorrors  = 2,
+    ANY             = -1
 };
 
 

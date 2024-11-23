@@ -108,17 +108,18 @@ void MainWindow::on_pb_request_clicked()
     }
     else if (ui->cb_category->currentIndex() == requestComedy)
     {
-        dataBase->RequestToDB("SELECT title, description FROM film f"
-                              "JOIN film_category fc on f.film_id = fc.film_id"
-                              "JOIN category c on c.category_id = fc.category_id"
+        dataBase->RequestToDB("SELECT title, description FROM film f "
+                              "JOIN film_category fc on f.film_id = fc.film_id "
+                              "JOIN category c on c.category_id = fc.category_id "
                               "WHERE c.name = 'Comedy'");
     }
     else if (ui->cb_category->currentIndex() == requestHorrors)
     {
-        dataBase->RequestToDB("SELECT title, description FROM film f"
-                              "JOIN film_category fc on f.film_id = fc.film_id"
-                              "JOIN category c on c.category_id = fc.category_id"
-                              "WHERE c.name = 'Horror'");
+        dataBase->RequestToDB("SELECT title, description "
+                              "FROM film "
+                              "JOIN film_category on film.film_id = film_category.film_id "
+                              "JOIN category on category.category_id = film_category.category_id "
+                              "WHERE category.name = 'Horror'");
     }
 
 }
@@ -131,10 +132,12 @@ void MainWindow::on_pb_request_clicked()
 void MainWindow::ScreenDataFromDB(const QAbstractTableModel *model, int typeTb)
 {
     ui->tbV_tableOut->setModel(0);
+
     if (typeTb == requestAllFilms)
     {
         ui->tbV_tableOut->setModel(const_cast<QAbstractTableModel*>(model));
         ui->tbV_tableOut->hideColumn(0);
+        for (int var = 0; var < model->columnCount(); ++var) {ui->tbV_tableOut->setColumnWidth(var, 200);}
         for (int i = 3; i < model->columnCount(); i++)
         {
             ui->tbV_tableOut->hideColumn(i);
@@ -143,6 +146,8 @@ void MainWindow::ScreenDataFromDB(const QAbstractTableModel *model, int typeTb)
     else
     {
         ui->tbV_tableOut->setModel(const_cast<QAbstractTableModel*>(model));
+        for (int var = 0; var < model->columnCount(); ++var) {ui->tbV_tableOut->setColumnWidth(var, 200);}
+
     }
 
 

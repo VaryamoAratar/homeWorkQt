@@ -80,7 +80,7 @@ void DataBase::RequestToDB(QString request)
         simpleQueryModel->setHeaderData(0, Qt::Horizontal, tr("Название фильма"));
         simpleQueryModel->setHeaderData(1, Qt::Horizontal, tr("Описание фильма"));
 
-    emit sig_SendDataFromDB(simpleQueryModel, 0);
+    emit sig_SendDataFromDB(simpleQueryModel, ANY);
     }
 }
 
